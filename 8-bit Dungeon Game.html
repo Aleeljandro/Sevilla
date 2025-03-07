@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ong el deseo de los niños</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+@font-face {
+font-family: 'GameBoy';
+src: url('https://fonts.cdnfonts.com/css/pokemon-gb') format('woff2');
+}
+.gameboy-screen {
+image-rendering: pixelated;
+background: #9bbc0f;
+box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+overflow: hidden;
+}
+.grid-cols-16 {
+grid-template-columns: repeat(16, minmax(0, 1fr));
+}
+.grid-rows-12 {
+grid-template-rows: repeat(12, minmax(0, 1fr));
+}
+.pixel-border {
+box-shadow:
+-4px -4px 0 0 #0f380f,
+4px 4px 0 0 #306230,
+inset -4px -4px 0 0 #8bac0f,
+inset 4px 4px 0 0 #9bbc0f;
+}
+.scanlines::before {
+content: '';
+position: absolute;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background: repeating-linear-gradient(
+transparent 0px,
+rgba(0, 0, 0, 0.05) 1px,
+transparent 2px
+);
+pointer-events: none;
+}
+@keyframes blink {
+0%, 49% { opacity: 1; }
+50%, 100% { opacity: 0; }
+}
+.press-start {
+animation: blink 1s infinite;
+}
+</style>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+primary: '#9bbc0f',
+secondary: '#306230',
+darkest: '#0f380f',
+lighter: '#8bac0f'
+},
+borderRadius: {
+'none': '0px',
+'sm': '4px',
+DEFAULT: '8px',
+'md': '12px',
+'lg': '16px',
+'xl': '20px',
+'2xl': '24px',
+'3xl': '32px',
+'full': '9999px',
+'button': '8px'
+}
+}
+}
+}
+</script>
+</head>
+<link rel="icon" href="image/icon.png" type="image/x-icon">
+<body class="bg-darkest h-screen flex items-center justify-center" style="font-family: 'Press Start 2P', cursive;">
+<div class="w-full h-screen bg-secondary p-8 pixel-border relative">
+<div class="gameboy-screen w-full h-[calc(100vh-16rem)] rounded-sm p-4 relative scanlines">
+<div class="flex flex-col h-full">
+<header class="text-center mb-8">
+<h1 class="text-darkest text-2xl mb-2">ONG EL DESEO DE LOS NIÑOS</h1>
+<audio id="backgroundMusic" loop>
+    <source src="September (2021 Remaster) [8 Bit Tribute to Earth, Wind & Fire] - 8 Bit Universe.mp3" type="audio/mp3">
+</audio>
+<button onclick="document.getElementById('backgroundMusic').play()">Reproducir música</button>
+
+
+
+</header>
+<div class="flex-1 grid grid-cols-3 gap-4">
+<div class="col-span-2 bg-lighter p-4 rounded pixel-border relative overflow-hidden">
+<div class="flex flex-col h-full">
+<h2 class="text-darkest text-xl mb-4">NOS PRESENTAMOS:</h2>
+<div class="text-darkest text-sm space-y-4">
+<p>La ONG El Deseo de los Niños surge como una respuesta comprometida hacia la problemática que enfrentan los niños en situación
+ de marginación social. Su misión principal es brindar apoyo integral a estos pequeños, garantizando que tengan acceso a recursos
+ y oportunidades que les permitan crecer en un entorno saludable y seguro. Además, la organización trabaja activamente para fomentar
+ su desarrollo físico, emocional y educativo. A través de programas específicos, buscan aliviar las desigualdades y generar un impacto
+ positivo en sus vidas. El Deseo de los Niños también colabora con comunidades locales para crear conciencia sobre la importancia de cuidar a la infancia.</p>
+<p>Para contactar con nosotros:</p>
+<ul class="list-disc list-inside space-y-2">
+<li>CORREO: ongeddln@hotmail.com</li>
+<li>FACEBOOK: ONG El deseo de los Niños</li>
+<li>INSTAGRAM: @ong_deseo</li>
+</ul>
+<p class="mt-4">Homenajeando una vida, transformando muchas otras.</p>
+<p class="mt-4">Presiona Z o X para ver los demás voluntarios.</p>
+</div>
+</div>
+</div>
+<div class="bg-lighter p-4 rounded pixel-border flex flex-col items-center">
+    <div class="w-96 h-96 bg-darkest rounded mb-4 pixel-border overflow-hidden flex items-center justify-center">
+        <div id="imageFrame">
+            <img id="characterImage" src="image/VAPORGRAM_IMG_1741279394612.png" alt="Character Image">
+        </div>
+    </div>
+    <!-- Información del personaje debajo de la imagen -->
+    <div class="text-center mt-4">
+        <p id="characterNombre" class="text-darkest text-lg font-bold"></p>
+        <p id="characterEdad" class="text-darkest text-md"></p>
+        <p id="characterRol" class="text-darkest text-md"></p>
+    </div>
+</div>
+</div>
+</div>
+<div class="mt-4 flex justify-center">
+<button id="startButton" class="px-6 py-2 bg-darkest text-primary hover:bg-secondary transition-colors cursor-pointer press-start !rounded-button">
+QUITAR SONIDO
+</button>
+</div>
+</div>
+</div>
+<div></div>
+<div class="absolute bottom-32 left-1/2 transform -translate-x-1/2">
+    <button id="muteButton" class="px-4 py-2 bg-darkest text-primary hover:bg-secondary transition-colors cursor-pointer rounded">
+        🔊 Silenciar
+    </button>
+</div>
+
+
+<div class="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+    <div class="flex gap-4">
+        <button id="btnZ" class="w-12 h-12 bg-darkest text-primary hover:bg-secondary transition-colors cursor-pointer !rounded-full">
+            Z
+        </button>
+        <button id="btnX" class="w-12 h-12 bg-darkest text-primary hover:bg-secondary transition-colors cursor-pointer !rounded-full">
+            X
+        </button>
+    </div>
+</div>
+</div>
+</div>
+<audio id="buttonSound" preload="auto">
+<source src="data:audio/wav;base64,UklGRh4BAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQABAAD//wD/+v/0/+3/5v/f/9j/0f/K/8P/vP+1/67/p/+g/5n/kv+L/4T/ff92/2//aP9h/1r/U/9M/0X/Pv83/zD/Kf8i/xv/FP8N/wb///74//H/6v/j/9z/1f/O/8f/wP+5/7L/q/+k/53/lv+P/4j/gf96/3P/bP9l/17/V/9Q/0n/Qv87/zT/Lf8m/x//GP8R/wr/A/78/vX+7v7n/uD+2f7S/sv+xP69/rb+r/6o/qH+mv6T/oz+hf5+/nf+cP5p/mL+W/5U/k3+Rv4//jj+Mf4q/iP+HP4V/g7+B/4A/vn97P3l/d79" type="audio/wav">
+</audio>
+<script>
+const buttonSound = document.getElementById('buttonSound');
+const buttons = document.querySelectorAll('button');
+const gameText = document.getElementById('gameText');
+const character = document.getElementById('character');
+let gameStarted = false;
+buttons.forEach(button => {
+button.addEventListener('click', () => {
+buttonSound.currentTime = 0;
+buttonSound.play();
+});
+});
+document.getElementById('startButton').addEventListener('click', () => {
+if (!gameStarted) {
+gameStarted = true;
+gameText.textContent = "Presiona Z o X para ver los demás voluntarios.";
+document.getElementById('startButton').classList.remove('press-start');
+}
+});
+let characterPos = { x: 50, y: 50 };
+const moveSpeed = 100;
+function moveCharacter(direction) {
+if (!gameStarted) return;
+const container = document.querySelector('.col-span-2');
+const bounds = {
+minX: 0,
+maxX: 100,
+minY: 0,
+maxY: 100
+};
+switch(direction) {
+case 'up':
+characterPos.y = bounds.minY;
+break;
+case 'down':
+characterPos.y = bounds.maxY;
+break;
+case 'left':
+characterPos.x = bounds.minX;
+break;
+case 'right':
+characterPos.x = bounds.maxX;
+break;
+}
+character.style.transform = `translate(calc(${characterPos.x}% - 50%), calc(${characterPos.y}% - 50%)) scale(0.8)`;
+updateGameText();
+}
+function updateGameText() {
+const messages = [
+"You hear strange noises in the distance...",
+"The walls seem to be watching you...",
+"A cold draft chills your bones...",
+"Ancient runes glow dimly on the walls...",
+"The floor creaks beneath your feet..."
+];
+// Change message based on position
+if (characterPos.x < 30 && characterPos.y < 30) {
+gameText.textContent = "You've found a dark corner. Be careful!";
+} else if (characterPos.x > 70 && characterPos.y < 30) {
+gameText.textContent = "Strange markings cover the walls here.";
+} else if (characterPos.x < 30 && characterPos.y > 70) {
+gameText.textContent = "You feel a draft coming from somewhere...";
+} else if (characterPos.x > 70 && characterPos.y > 70) {
+gameText.textContent = "Something glimmers in the shadows.";
+} else {
+gameText.textContent = messages[Math.floor(Math.random() * messages.length)];
+}
+}
+const characters = [
+  {
+    nombre: "CARMEN",
+    edad: "28",
+    rol: "SECRETARIA",
+    image: "image/VAPORGRAM_IMG_1741279394612.png",
+  },
+  {
+    nombre: "ALEJANDRO",
+    edad: "28",
+    rol: "DISEÑADOR",
+    image: "image/VAPORGRAM_IMG_1741283156637.png",
+  }
+];
+
+let currentIndex = 0;
+
+function updateProfile() {
+  const character = characters[currentIndex];
+
+  document.getElementById("characterImage").src = character.image;
+  document.getElementById("characterNombre").innerText = `NOMBRE: ${character.nombre}`;
+  document.getElementById("characterEdad").innerText = `EDAD: ${character.edad}`;
+  document.getElementById("characterRol").innerText = `ROL: ${character.rol}`;
+}
+
+// Detectar teclas para cambiar de perfil
+document.addEventListener("keydown", (event) => {
+  if (event.key === "z" || event.key === "Z") {
+    currentIndex = (currentIndex - 1 + characters.length) % characters.length;
+  } else if (event.key === "x" || event.key === "X") {
+    currentIndex = (currentIndex + 1) % characters.length;
+  }
+  updateProfile();
+});
+// Detectar clics en los botones
+document.getElementById("btnZ").addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + characters.length) % characters.length;
+    updateProfile();
+});
+
+document.getElementById("btnX").addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % characters.length;
+    updateProfile();
+});
+
+// Cargar el primer personaje al inicio
+window.onload = updateProfile;
+
+
+</script>
+<script>
+    const backgroundMusic = document.getElementById("backgroundMusic");
+    const muteButton = document.getElementById("muteButton");
+
+    muteButton.addEventListener("click", () => {
+        backgroundMusic.muted = !backgroundMusic.muted;
+        muteButton.textContent = backgroundMusic.muted ? "🔇 Activar sonido" : "🔊 Silenciar";
+    });
+</script>
+
+</body>
+</html>

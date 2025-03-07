@@ -1,0 +1,194 @@
+* {
+    cursor: url('image/gameboy-cursor.png') 16 16, auto !important;
+}
+
+#imageFrame {
+    width: 150px; /* Ajusta al tamaño del recuadro */
+    height: 150px;
+    background-color: #b0b0b0; /* Color del recuadro gris */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin: auto;
+    border-radius: 10px;
+}
+
+#characterImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajusta la imagen para que encaje sin deformarse */
+    border-radius: 10px;
+}
+
+.bottom-32 {
+    bottom: 8rem; /* Más arriba que bottom-20 */
+}
+
+:where([class^="ri-"])::before { content: "\f3c2"; }
+
+@font-face {
+  font-family: 'GameBoy';
+  src: url('https://fonts.cdnfonts.com/css/pokemon-gb') format('woff2');
+}
+
+.gameboy-screen {
+  image-rendering: pixelated;
+  background: #9bbc0f;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+}
+
+.grid-cols-16 {
+  grid-template-columns: repeat(16, minmax(0, 1fr));
+}
+
+.grid-rows-12 {
+  grid-template-rows: repeat(12, minmax(0, 1fr));
+}
+
+.pixel-border {
+  box-shadow:
+    -4px -4px 0 0 #0f380f,
+    4px 4px 0 0 #306230,
+    inset -4px -4px 0 0 #8bac0f,
+    inset 4px 4px 0 0 #9bbc0f;
+}
+
+.scanlines::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    transparent 0px,
+    rgba(0, 0, 0, 0.05) 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.press-start {
+  animation: blink 1s infinite;
+}
+
+/* Estilo para pantallas grandes */
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-family: 'Press Start 2P', cursive;
+  background-color: #0f380f; /* Color oscuro de fondo */
+}
+
+.gameboy-screen {
+  max-width: 100vw;
+  max-height: 100vh;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Estilos específicos para dispositivos pequeños */
+@media (max-width: 1024px) {
+  header h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    word-wrap: break-word;
+    margin: 0 auto;
+  }
+
+  body {
+    font-size: 0.9em; /* Un poco más pequeño en tablets */
+}
+}
+
+  .content {
+    overflow-wrap: anywhere;
+    word-break: normal;
+    white-space: normal;
+    max-width: 100%;
+}
+
+
+.gif-container img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+  .gif-container img {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Evita deformaciones */
+}
+
+
+/* Estilos para pantallas móviles (max-width: 768px) */
+@media (max-width: 768px) {
+    .grid-cols-16 {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px;
+    }
+}
+
+
+  header h1 {
+    font-size: 1.25rem;
+    word-wrap: break-word;
+  }
+
+  .content {
+    overflow-wrap: anywhere;
+    word-break: normal;
+    white-space: normal;
+    max-width: 100%;
+}
+
+
+  .gif-container {
+    width: 80%;
+    max-width: 300px;  /* Limita aún más el tamaño de la imagen */
+    margin: 0 auto;
+  }
+
+  .gif-container img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+body {
+    font-size: 0.8em; /* Más pequeño para móviles */
+}
+
+
+  .grid-cols-16 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .grid-rows-12 {
+    grid-template-rows: repeat(6, 1fr);
+  }
+
