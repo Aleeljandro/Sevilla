@@ -134,7 +134,7 @@ DEFAULT: '8px',
     <div class="text-center mt-4">
         <p id="characterNombre" class="text-darkest text-lg font-bold"></p>
         <p id="characterAño" class="text-darkest text-md"></p>
-        <p id="characterRol" class="text-darkest text-md"></p>
+        <p id="characterUbicación" class="text-darkest text-md"></p>
     </div>
 </div>
 </div>
@@ -241,31 +241,31 @@ const characters = [
   {
     nombre: "GIRALDA",
     año: "1184",
-    rol: "SECRETARIA",
+    ubicación: "BARRIO SANTA CRUZ",
     image: "image/VAPORGRAM_IMG_1741279394612.png",
   },
   {
     nombre: "ALEJANDRO",
     año: "28",
-    rol: "DISEÑADOR",
+    ubicación: "DISEÑADOR",
     image: "image/VAPORGRAM_IMG_1741283156637.png",
   },
   {
     nombre: "DANIELLE",
     año: "18",
-    rol: "COMMUNITY MANAGER",
+    ubicación: "COMMUNITY MANAGER",
     image: "image/VAPORGRAM_IMG_1741377473298.png",
   },
   {
     nombre: "BERNADETTE",
     año: "60",
-    rol: "PRESIDENTA",
+    ubicación: "PRESIDENTA",
     image: "image/VAPORGRAM_IMG_1741377229042.png",
   },
   {
     nombre: "PASCAL",
     año: "58",
-    rol: "PRESIDENTE",
+    ubicación: "PRESIDENTE",
     image: "image/VAPORGRAM_IMG_1741381536140.png",
   }
 ];
@@ -278,7 +278,7 @@ function updateProfile() {
   document.getElementById("characterImage").src = character.image;
   document.getElementById("characterNombre").innerText = `NOMBRE: ${character.nombre}`;
   document.getElementById("characterAño").innerText = `AÑO: ${character.año}`;
-  document.getElementById("characterRol").innerText = `ROL: ${character.rol}`;
+  document.getElementById("characterUbicación").innerText = `UBICACIÓN: ${character.ubicación}`;
 }
 
 // Detectar teclas para cambiar de perfil
