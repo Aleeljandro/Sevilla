@@ -239,8 +239,8 @@ gameText.textContent = messages[Math.floor(Math.random() * messages.length)];
 }
 const characters = [
   {
-    nombre: "CARMEN",
-    edad: "28",
+    nombre: "GIRALDA",
+    edad: "1184",
     rol: "SECRETARIA",
     image: "image/VAPORGRAM_IMG_1741279394612.png",
   },
@@ -277,7 +277,7 @@ function updateProfile() {
 
   document.getElementById("characterImage").src = character.image;
   document.getElementById("characterNombre").innerText = `NOMBRE: ${character.nombre}`;
-  document.getElementById("characterEdad").innerText = `EDAD: ${character.edad}`;
+  document.getElementById("characterAÑO").innerText = `AÑO: ${character.edad}`;
   document.getElementById("characterRol").innerText = `ROL: ${character.rol}`;
 }
 
